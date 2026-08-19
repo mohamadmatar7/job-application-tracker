@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Job Application Tracker
+
+A small personal project I built to keep track of my job applications in one place.
+
+Instead of sending an updated list every time something changes, I can simply share the public link. The overview stays up to date and shows where I applied, when I applied, the current status, and any response I received.
+
+## Features
+
+- Public overview of job applications
+- Dutch and English interface
+- Search applications by company, position or location
+- Filter applications by status
+- Track application status and responses
+- Responsive layout for desktop and mobile
+- Private admin dashboard
+- Add, edit and delete applications
+- Protected admin access
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Tailwind CSS
+- Supabase
+
+## How It Works
+
+The public dashboard is read-only and can be shared with others.
+
+Applications are displayed with their current status, application date, company, location and any response that was received.
+
+The private admin area is used to manage the applications. When an application is added or updated, the changes are stored in Supabase and automatically reflected on the public overview.
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository:
+
+```bash
+git clone <https://github.com/mohamadmatar7/job-application-tracker.git>
+cd job-application-tracker
+```
+
+Install the dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env.local` file and add the required Supabase environment variables:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
+```
+
+If the project uses a server-side Supabase key for admin operations, add it as well:
+
+```env
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+```
+
+Never commit `.env.local` or private keys to GitHub.
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Languages
 
-## Learn More
+The public overview is available in:
 
-To learn more about Next.js, take a look at the following resources:
+- Dutch
+- English
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The language can be changed directly from the dashboard.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Why I Built It
 
-## Deploy on Vercel
+I wanted a simple way to keep my job application process organized and up to date.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Instead of maintaining separate documents or sending a new list every time something changes, I can update the tracker once and share the same link.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Simple, practical, and easier to maintain.
+
+## License
+
+This is a personal project created for my own use.
