@@ -136,7 +136,7 @@ export default function ApplicationsTable({
             className="px-5 py-5"
           >
             <div className="flex items-start justify-between gap-4">
-              <div>
+              <div className="min-w-0">
                 <h3 className="font-semibold text-slate-950">
                   {application.position}
                 </h3>
@@ -146,10 +146,12 @@ export default function ApplicationsTable({
                 </p>
               </div>
 
-              <StatusBadge
-                status={application.status}
-                label={t.statuses[application.status]}
-              />
+              <div className="shrink-0">
+                <StatusBadge
+                  status={application.status}
+                  label={t.statuses[application.status]}
+                />
+              </div>
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-4">
@@ -206,28 +208,34 @@ export default function ApplicationsTable({
 
       {/* Desktop */}
       <div className="hidden overflow-x-auto md:block">
-        <table className="w-full text-left text-sm">
+        <table className="w-full min-w-[1180px] table-fixed text-left text-sm">
           <thead className="bg-slate-50/80">
             <tr className="text-xs uppercase tracking-wide text-slate-500">
-              <th className="px-6 py-3.5 font-semibold">
+              <th className="sticky left-0 z-20 w-64 bg-slate-50 px-6 py-3.5 font-semibold">
                 {t.position}
               </th>
-              <th className="px-6 py-3.5 font-semibold">
+
+              <th className="w-56 px-6 py-3.5 font-semibold">
                 {t.company}
               </th>
-              <th className="px-6 py-3.5 font-semibold">
+
+              <th className="w-40 px-6 py-3.5 font-semibold">
                 {t.location}
               </th>
-              <th className="px-6 py-3.5 font-semibold">
+
+              <th className="w-36 px-6 py-3.5 font-semibold">
                 {t.applied}
               </th>
-              <th className="px-6 py-3.5 font-semibold">
+
+              <th className="w-36 px-6 py-3.5 font-semibold">
                 {t.status}
               </th>
-              <th className="px-6 py-3.5 font-semibold">
+
+              <th className="w-80 px-6 py-3.5 font-semibold">
                 {t.response}
               </th>
-              <th className="px-6 py-3.5 text-right font-semibold">
+
+              <th className="sticky right-0 z-20 w-40 bg-slate-50 px-6 py-3.5 text-right font-semibold">
                 {t.vacancy}
               </th>
             </tr>
@@ -237,21 +245,44 @@ export default function ApplicationsTable({
             {filteredApplications.map((application) => (
               <tr
                 key={application.id}
-                className="transition-colors hover:bg-slate-50/80"
+                className="group transition-colors hover:bg-slate-50/80"
               >
-                <td className="whitespace-nowrap px-6 py-4 font-medium text-slate-950">
-                  {application.position}
+                <td
+                  className="
+                    sticky left-0 z-10
+                    w-64 bg-white px-6 py-4
+                    font-medium text-slate-950
+                    transition-colors
+                    group-hover:bg-slate-50
+                  "
+                >
+                  <p
+                    className="line-clamp-2 break-words leading-5"
+                    title={application.position}
+                  >
+                    {application.position}
+                  </p>
                 </td>
 
-                <td className="whitespace-nowrap px-6 py-4 text-slate-600">
-                  {application.company}
+                <td className="w-56 px-6 py-4 text-slate-600">
+                  <p
+                    className="line-clamp-2 break-words leading-5"
+                    title={application.company}
+                  >
+                    {application.company}
+                  </p>
                 </td>
 
-                <td className="whitespace-nowrap px-6 py-4 text-slate-600">
-                  {application.location ?? "—"}
+                <td className="w-40 px-6 py-4 text-slate-600">
+                  <p
+                    className="line-clamp-2 break-words leading-5"
+                    title={application.location ?? undefined}
+                  >
+                    {application.location ?? "—"}
+                  </p>
                 </td>
 
-                <td className="whitespace-nowrap px-6 py-4 text-slate-600">
+                <td className="w-36 whitespace-nowrap px-6 py-4 text-slate-600">
                   {new Intl.DateTimeFormat(dateLocale, {
                     day: "2-digit",
                     month: "short",
@@ -259,16 +290,19 @@ export default function ApplicationsTable({
                   }).format(new Date(application.applied_at))}
                 </td>
 
-                <td className="whitespace-nowrap px-6 py-4">
+                <td className="w-36 whitespace-nowrap px-6 py-4">
                   <StatusBadge
                     status={application.status}
                     label={t.statuses[application.status]}
                   />
                 </td>
 
-                <td className="max-w-xs px-6 py-4 text-slate-600">
+                <td className="w-80 px-6 py-4 text-slate-600">
                   {application.notes ? (
-                    <p className="line-clamp-2 leading-6">
+                    <p
+                      className="line-clamp-2 break-words leading-6"
+                      title={application.notes}
+                    >
                       {application.notes}
                     </p>
                   ) : (
@@ -278,7 +312,15 @@ export default function ApplicationsTable({
                   )}
                 </td>
 
-                <td className="whitespace-nowrap px-6 py-4 text-right">
+                <td
+                  className="
+                    sticky right-0 z-10
+                    w-40 whitespace-nowrap
+                    bg-white px-6 py-4 text-right
+                    transition-colors
+                    group-hover:bg-slate-50
+                  "
+                >
                   {application.url ? (
                     <a
                       href={application.url}
@@ -289,7 +331,9 @@ export default function ApplicationsTable({
                       {t.viewVacancy} ↗
                     </a>
                   ) : (
-                    <span className="text-slate-300">—</span>
+                    <span className="text-slate-300">
+                      —
+                    </span>
                   )}
                 </td>
               </tr>
