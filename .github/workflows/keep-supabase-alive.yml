@@ -10,5 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Ping application
-        run: curl --fail "https://mohamad-applications.vercel.app/nl"
+      - name: Ping Supabase
+        run: |
+          curl --fail --silent --show-error \
+            "https://mohamad-applications.vercel.app/api/keep-alive"
