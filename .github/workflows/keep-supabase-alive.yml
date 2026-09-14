@@ -2,8 +2,7 @@ name: Keep Supabase Alive
 
 on:
   schedule:
-    - cron: "17 7,19 * * *"
-      timezone: "Europe/Brussels"
+    - cron: "17 6,18 * * *"
 
   workflow_dispatch:
 
